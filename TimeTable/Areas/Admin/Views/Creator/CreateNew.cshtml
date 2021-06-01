@@ -1,0 +1,27 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.NewPostViewModel
+
+    <div asp-validation-summary="All" style="min-width: 70%;">
+        <form asp-area="Admin" asp-controller="Creator" asp-action="CreateNew" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label asp-for="New.Title">Название</label>
+                <input asp-for="New.Title" type="text" class="form-control" required="" style="width: 50%">
+                <span asp-validation-for="New.Title"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="New.Desc">Название курса</label>
+                <textarea asp-for="New.Desc" class="form-control" required=""></textarea>
+                <span asp-validation-for="New.Desc"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImgFile">Фото</label>
+                <input asp-for="ImgFile" class="form-control-file" accept="image/jpeg,image/png" type="file" required="" multiple />
+                <span asp-validation-for="ImgFile"></span>
+            </div>
+
+            <button class="btn btn-lg btn-block text-white" style="background-color:#4c68b0" type="submit">Разместить</button>
+        </form>
+    </div>

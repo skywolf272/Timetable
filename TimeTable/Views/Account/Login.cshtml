@@ -1,0 +1,24 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.LoginUserModel
+
+    <div asp-validation-summary="All">
+        <form class="form-signin" asp-controller="Account" asp-action="Login">
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 mt-4 font-weight-normal text-white">Войти</h1>
+            </div>
+
+            <div class="form-label-group">
+                <input asp-for="UserName" class="form-control" required="">
+                <label asp-for="UserName" class="text-white">Логин</label>
+                <span asp-validation-for="UserName"></span>
+            </div>
+
+            <div class="form-label-group">
+                <input asp-for="Password" type="password" class="form-control" required="">
+                <label asp-for="Password" class="text-white">Пароль</label>
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+    </div>

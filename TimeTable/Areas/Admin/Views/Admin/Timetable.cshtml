@@ -1,0 +1,56 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.TimetableViewModel
+@{
+    Layout = "_LayoutForTimeTable";
+}
+
+<div class="d-flex justify-content-between">
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="Timetable" asp-route-Days="@Model.PrevioustDays()"> < </a>
+    <a class="btn btn-primary" asp-area="Admin" asp-controller="Admin" asp-action="Timetable" asp-route-Days="@Model.NextDays()"> > </a>
+</div>
+
+<div class="container">
+    <div class="timetable-img text-center">
+        <img src="img/content/timetable.png" alt="">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr class="bg-light-gray">
+                    <th class="text-uppercase">
+
+                    </th>
+                    <th class="text-uppercase">Понедельник</th>
+                    <th class="text-uppercase">Вторник</th>
+                    <th class="text-uppercase">Среда</th>
+                    <th class="text-uppercase">Четверг</th>
+                    <th class="text-uppercase">Пятница</th>
+                    <th class="text-uppercase">Суббота</th>
+                    <th class="text-uppercase">Воскресенье</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int hour = 8; hour <= 22; hour++)
+                {
+                    <tr>
+                        <td class="align-middle">@hour:00</td>
+                        @for (int day = 0; day <= 6; day++)
+                        {
+                    <td>
+                        @for (int i = 0; i < Model.Lessons.Count; i++)
+                        {
+                            @if (Convert.ToInt32(Model.Lessons[i].Datetime.DayOfWeek) == (day + 1) && Model.Lessons[i].Datetime.Hour == (hour) || Convert.ToInt32(Model.Lessons[i].Datetime.DayOfWeek) == (day - 6) && Model.Lessons[i].Datetime.Hour == (hour))
+                            {
+                                <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">@Model.Courses.Where(x => x.ID == Model.Lessons[i].CourseID).FirstOrDefault().Name</span>
+                                <div class="margin-10px-top font-size14">@hour:00-@(hour + 1):00</div>
+                                <div class="font-size13 text-light-gray">Name</div>
+                            }
+                        }
+                    </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

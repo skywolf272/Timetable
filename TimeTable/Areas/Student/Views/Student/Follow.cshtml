@@ -1,0 +1,37 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.FollowViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="col px-md-5 h2 mt-3"></h1>
+
+@for (int i = 0; i < Model.Lessons.Count; i++)
+{
+    <div class="col-md-6" style="width: 40%">
+        <div class="snip1336 shadow-lg rounded d-flex justify-content-around mb-4 box-shadow h-md-250" style="min-width: 200%;">
+            <img class="card-img-right align-items-center flex-auto d-none d-md-block" style="height: 200px;" src="@Model.CurCourse.ImgPath" data-holder-rendered="true">
+            <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Курс: @Model.CurCourse.Name</strong>
+                <h4 class="text-white">Записавшихся: @Model.SlotsOfCourse.Where(x => x.LessonID == Model.Lessons[i].ID).Count()/@Model.Lessons[i].SlotsCount</h4>
+                <h3 class="text-white">@Model.Lessons[i].Datetime.Hour:00</h3>
+                <h4 class="text-white">@Model.Lessons[i].Datetime.Day.@Model.Lessons[i].Datetime.Month.@Model.Lessons[i].Datetime.Year</h4>
+                <div class="mb-1 text-muted">@Model.Teacher.FirstName @Model.Teacher.SecondName</div>
+            </div>
+            @{
+                if (Model.FollowingLesson.Contains(Model.Lessons[i]))
+                {
+                    <form asp-area="Student" asp-action="Follow" asp-controller="Student" method="post">
+                        <button type="submit" class="btn" style="color:#91a2cf" asp-area="Student" asp-action="UnFollow" asp-controller="Student" asp-route-lessonToUnFollowID="@Model.Lessons[i].ID">Отписатьcя</button>
+                    </form>
+                }
+                else
+                {
+                    <form asp-area="Student" asp-action="Follow" asp-controller="Student" method="post">
+                        <button type="submit" class="btn" style="color:#91a2cf" asp-area="Student" asp-action="FollowLesson" asp-controller="Student" asp-route-lessonToFollowID="@Model.Lessons[i].ID">Записаться</button>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+}

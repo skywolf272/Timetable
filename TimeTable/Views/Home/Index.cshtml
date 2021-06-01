@@ -1,0 +1,21 @@
+﻿@model TimeTable.Models.CoursesViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1 class="col px-md-5 p-2">Открытые курсы</h1>
+<div class="d-flex flex-wrap">
+    @{
+        foreach (var course in Model.Courses)
+        {
+            <figure class="snip1336 shadow-lg rounded" style="max-width: 350px;">
+                <img src="@course.ImgPath" />
+                <figcaption>
+                    @*<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample4.jpg" alt="profile-sample4" class="profile" />*@
+                    <h2>@course.Name<span>@Model.Teachers.Where(x => x.Id == course.TeacherId).FirstOrDefault().FirstName @Model.Teachers.Where(x => x.Id == course.TeacherId).FirstOrDefault().SecondName</span></h2>
+                    <p>@course.Description</p>
+                    <a asp-area="" asp-action="Login" asp-controller="Account" class="follow">Записаться</a>
+                </figcaption>
+            </figure>
+        }
+    }
+</div>

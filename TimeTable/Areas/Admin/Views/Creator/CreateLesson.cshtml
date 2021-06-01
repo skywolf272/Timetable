@@ -1,0 +1,62 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.LessonViewModel
+
+@{
+    ViewData["Title"] = "New Course";
+}
+
+    <div class="d-flex flex-row-reverse justify-content-between">
+        <div asp-validation-summary="All" style="min-width: 70%;">
+            <form asp-area="Admin" asp-controller="Creator" asp-action="CreateLesson" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label asp-for="Lesson.CourseID">Выберите курс</label>
+                    @Html.DropDownListFor(m => m.Lesson.CourseID, new SelectList(Model.Courses, "ID", "Name"), "")
+                    <span asp-validation-for="Lesson.CourseID"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Lesson.Datetime">Дата урока</label>
+                    <input asp-for="Lesson.Datetime" type="date" class="form-control" required="" style="width: 50%">
+                    <span asp-validation-for="Lesson.Datetime"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TimeFix">Время урока</label>
+                    <input asp-for="TimeFix" type="time" class="form-control" required="" style="width: 50%">
+                    <span asp-validation-for="TimeFix"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Lesson.TeacherId">Преподаватель на замену</label>
+                    @Html.DropDownListFor(m => m.Lesson.TeacherId, new SelectList(Model.Teachers, "Id", "FirstName"), "")
+                    <span asp-validation-for="Lesson.TeacherId"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Lesson.SlotsCount">Количество учащихся</label>
+                    <input asp-for="Lesson.SlotsCount" class="form-control" required="" style="width: 30%">
+                    <span asp-validation-for="Lesson.SlotsCount"></span>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Создать</button>
+            </form>
+        </div>
+
+        <ul class="list-group">
+            @if (Model.Lessons.Count != 0)
+            {
+                @for (int i = 0; i < Model.Lessons.Count; i++)
+                {
+                    <li class="list-group-item">
+                        <p>
+                            @Model.Courses.Where(x => x.ID == Model.Lessons[i].CourseID).FirstOrDefault().Name
+                        </p>
+                        <p>
+                            @Model.Lessons[i].Datetime
+                        </p>
+                    </li>
+                }
+            }
+        </ul>
+    </div>

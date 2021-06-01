@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TimeTable.Models.NewPost>
+
+@foreach ( var Post in Model )
+{
+    <div class="row featurette mt-3">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading text-white">@Post.Title</h2>
+            <p class="lead text-white">@Post.Desc</p>
+            <small class="text-muted text-white">@Post.Date.Day.@Post.Date.Month.@Post.Date.Year</small>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto rounded-left" alt="500x500" src="@Post.ImgPath" data-holder-rendered="true" style="width: 500px;">
+        </div>
+    </div>
+}

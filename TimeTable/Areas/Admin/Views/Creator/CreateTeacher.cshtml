@@ -1,0 +1,42 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.RegistrationUserModel
+
+<div asp-validation-summary="All">
+    <form class="form-signin" asp-controller="Creator" asp-action="CreateTeacher">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Регистрация учителя</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="FirstName" class="form-control" required="">
+            <label asp-for="FirstName">Имя</label>
+            <span asp-validation-for="FirstName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="SecondName" class="form-control" required="">
+            <label asp-for="SecondName">Фамилия</label>
+            <span asp-validation-for="SecondName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="UserName" class="form-control" required="">
+            <label asp-for="UserName">Логин</label>
+            <span asp-validation-for="UserName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="Password" type="password" class="form-control" required="">
+            <label asp-for="Password">Password</label>
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="PasswordConfirm" type="password" class="form-control" required="">
+            <label asp-for="PasswordConfirm">Password</label>
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрировать</button>
+    </form>
+</div>

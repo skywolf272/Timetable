@@ -1,0 +1,86 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> @* Подключение Bootstrap *@
+    <link rel="stylesheet" href="~/css/Profile.css">
+</head>
+<body style="background-image:url(/img/sdfgsdg547h45resg.jpg); backdrop-filter: blur(3px); background-size: cover;">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark box-shadow" style="background-color: #4c68b0">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TimeTable</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Курсы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="News">Новости</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Timetable">Расписание</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-2">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Registration">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="text-light text-center text-lg-start" style="background-color: #4c68b0; margin-top: 10%">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Ссылки</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a class="text-light" asp-area="" asp-controller="Home" asp-action="Index">Курсы</a>
+                        </li>
+                        <li>
+                            <a class="text-light" asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+
+                        </li>
+                        <li>
+                            <a class="text-light" asp-area="" asp-controller="Home" asp-action="News">Новости</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Контакты</h5>
+                    <ul class="list-unstyled mb-0">
+                        <p>Телефон: 8 000 000 00 00</p>
+                        <p>Адрес: 123456, Россия, Москва, Проспект успеха, 150</p>
+                        <p>Часы работы: 8:00-22:00</p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

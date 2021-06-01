@@ -1,0 +1,30 @@
+﻿@model TimeTable.Models.ProfileViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Style"] = "~/css/Profile.css";
+}
+
+
+<div class="card w-75">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Профиль: @Model.Student.FirstName @Model.Student.SecondName</li>
+        <li class="list-group-item">Логин: @Model.Student.UserName</li>
+    </ul>
+</div>
+<h3 class=" mt-2 text-white">Вы записаны на:</h3>
+<div class="d-flex flex-row">
+    @if (Model.FollowedLessons != null)
+    {
+        @for (int i = 0; i < Model.FollowedLessons.Count; i++)
+        {
+            <div class="card w-50" style="max-width: 300px;">
+                <img class="card-img-top" src="@Model.FollowedCourses.FirstOrDefault(x => x.ID == Model.FollowedLessons[i].CourseID).ImgPath">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.FollowedCourses.FirstOrDefault(x => x.ID == Model.FollowedLessons[i].CourseID).Name</h5>
+                    <p class="card-text">@Model.FollowedLessons[i].Datetime.Day.@Model.FollowedLessons[i].Datetime.Month.@Model.FollowedLessons[i].Datetime.Year @Model.FollowedLessons[i].Datetime.Hour:@Model.FollowedLessons[i].Datetime.Minute</p>
+                    <a asp-area="Student" asp-controller="Student" asp-action="UnFollow" asp-route-ID="@Model.FollowedLessons[i].ID">Отписаться от занятия</a>
+                </div>
+            </div>
+        }
+    }
+</div>

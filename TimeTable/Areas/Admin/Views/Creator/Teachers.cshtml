@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TimeTable.Models.UserStudent>
+
+    <div class="d-flex flex-wrap mt-3">
+        @foreach ( var teacher in Model )
+        {
+        <div class="card" style="width: 300px">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Логин: @teacher.UserName</li>
+                <li class="list-group-item">Имя: @teacher.FirstName</li>
+                <li class="list-group-item">Фамилия: @teacher.SecondName</li>
+            </ul>
+        </div>
+        }
+    </div>

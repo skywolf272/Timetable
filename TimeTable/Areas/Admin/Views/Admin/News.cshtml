@@ -1,0 +1,18 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<TimeTable.Models.NewPost>
+
+<a class="btn btn-lg btn-block text-white" style="background-color:#4c68b0" asp-area="Admin" asp-controller="Creator" asp-action="CreateNew">Разместить новость</a>
+@foreach (var Post in Model)
+{
+    <div class="row featurette mt-3">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">@Post.Title</h2>
+            <p class="lead">@Post.Desc</p>
+            <small class="text-muted">@Post.Date.Day.@Post.Date.Month.@Post.Date.Year</small>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto rounded" alt="500x500" src="@Post.ImgPath" data-holder-rendered="true" style="width: 500px; ">
+        </div>
+    </div>
+    <a class="btn btn-lg btn-warning btn-block" style="max-width: 100px" asp-area="Admin" asp-controller="Creator" asp-action="DeleteNew" asp-route-ID="@Post.ID">Удалить</a>
+}

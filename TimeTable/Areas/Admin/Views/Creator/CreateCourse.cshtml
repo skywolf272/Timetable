@@ -1,0 +1,49 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.CreateCourseViewModel
+
+@{
+    ViewData["Title"] = "New Course";
+}
+
+<div asp-validation-summary="All">
+    <form asp-area="Admin" asp-controller="Creator" asp-action="CreateCourse" method="post" enctype="multipart/form-data">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Новый курс</h1>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Course.Name">Название курса</label>
+            <input asp-for="Course.Name" class="form-control" required="">
+            <span asp-validation-for="Course.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Course.Description" class="form-control" required="">
+            <label asp-for="Course.Description">Описание</label>
+            <span asp-validation-for="Course.Description"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Course.TeacherId">Преподаватель</label>
+            @Html.DropDownListFor(m => m.Course.TeacherId, new SelectList(Model.Teachers, "Id", "SecondName"))
+            @*<select asp-for="Course.TeacherId" asp-items="Model.SelectListTeacher">
+                @{
+                foreach (var teacher in Model.Teachers)
+                {
+                    <option id="@teacher.Id">@teacher.SecondName @teacher.FirstName</option>
+                }
+            }
+            </select>*@
+            <span asp-validation-for="Course.TeacherId"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Img">Фото</label>
+            <input asp-for="Img" class="form-control-file" accept="image/jpeg,image/png" type="file" required="" multiple/>
+            <span asp-validation-for="Course.ImgPath"></span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+    </form>
+</div>

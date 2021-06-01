@@ -1,0 +1,42 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TimeTable.Models.RegistrationUserModel
+
+<div asp-validation-summary="All">
+    <form class="form-signin" asp-controller="Account" asp-action="Registration">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 mt-4 font-weight-normal text-white">Регистрация</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="FirstName" class="form-control" required="">
+            <label asp-for="FirstName" class="text-white">Имя</label>
+            <span asp-validation-for="FirstName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="SecondName" class="form-control" required="">
+            <label asp-for="SecondName" class="text-white">Фамилия</label>
+            <span asp-validation-for="SecondName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="UserName" class="form-control" required="">
+            <label asp-for="UserName" class="text-white">Логин</label>
+            <span asp-validation-for="UserName"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="Password" type="password" class="form-control" required="">
+            <label asp-for="Password" class="text-white">Пароль</label>
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-label-group">
+            <input asp-for="PasswordConfirm" type="password" class="form-control" required="">
+            <label asp-for="PasswordConfirm" class="text-white">Повторить пароль</label>
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block"  type="submit">Зарегистрироваться</button>
+    </form>
+</div>

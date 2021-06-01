@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\skywo\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\skywo\\.nuget\\packages"
+    ]
+  }
+}
