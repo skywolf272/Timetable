@@ -18,6 +18,47 @@ namespace TimeTable.Controllers
         public HomeController(AppDBContext dbContext)
         {
             DB = dbContext;
+            
+            string AdminID = Guid.NewGuid().ToString();
+            string AdminRoleID = Guid.NewGuid().ToString();
+
+            UserStudent userAdmin = new UserStudent()
+            {
+                Id = AdminID,
+                UserName = "Admin",
+                NormalizedUserName = "ADMIN",
+                PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin"),
+                SecurityStamp = String.Empty
+            };
+            DB.Users.Add(userAdmin);
+            IdentityRole roleAdmin = new IdentityRole()
+            {
+                Id = AdminRoleID,
+                Name = "admin",
+                NormalizedName = "ADMIN"
+            };
+            DB.Roles.Add(roleAdmin);
+            IdentityUserRole<string> userRoleAdmin = new IdentityUserRole<string>()
+            {
+                UserId = AdminID,
+                RoleId = AdminRoleID
+            };
+            DB.UserRoles.Add(userRoleAdmin);
+            IdentityRole roleStudent = new IdentityRole()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "student",
+                NormalizedName = "STUDENT"
+            };
+            DB.Roles.Add(roleStudent);
+            IdentityRole roleTeacher = new IdentityRole()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "teacher",
+                NormalizedName = "TEACHER"
+            };
+            DB.Roles.Add(roleTeacher);
+            DB.SaveChanges();
         }
 
         public IActionResult Index()
